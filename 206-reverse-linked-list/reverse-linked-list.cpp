@@ -9,23 +9,39 @@
  * };
  */
 
- #include <stack>
+#include <stack>
 using namespace std;
 
 class Solution {
 public:
     ListNode* reverseList(ListNode* head) {
-        stack<int> s;
-        ListNode* temp = head;
-        while (temp != NULL) {
-            s.push(temp->val);
-            temp = temp->next;
-        }
-        ListNode* temp2 = head;
-        while (temp2 != NULL) {
-            temp2->val = s.top();
-            s.pop();
-            temp2 = temp2->next;
+        // stack<int> s;
+        // ListNode* temp = head;
+        // while (temp != NULL) {
+        //     s.push(temp->val);
+        //     temp = temp->next;
+        // }
+        // ListNode* temp2 = head;
+        // while (temp2 != NULL) {
+        //     temp2->val = s.top();
+        //     s.pop();
+        //     temp2 = temp2->next;
+        // }
+        // return head;
+
+        ListNode* curr = head;
+        ListNode* prev = NULL;
+
+        // 1->2->3->4
+
+        while (curr != NULL) {
+            ListNode* curr1 = curr->next;
+
+            curr->next = prev;
+            prev = curr;
+
+            head = curr;
+            curr = curr1;
         }
         return head;
     }
