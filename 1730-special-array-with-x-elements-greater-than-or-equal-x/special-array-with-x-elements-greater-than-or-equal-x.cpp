@@ -1,20 +1,21 @@
 class Solution {
 public:
     int specialArray(vector<int>& nums) {
-        int x=0;
-        int ans = -1;
-        while(x <= nums.size()){
+    int mainCount = -1;
+        for (int i = 0; i <= nums.size(); i++) {
             int count = 0;
-            for(int i=0; i<nums.size(); i++){
-                if(nums[i] >= x){
+            for (int j = 0; j < nums.size(); j++) {
+                if(nums[j]>=i){
                     count++;
                 }
             }
-            if(count == x){
-                ans = x;
+            if(count==i){
+                mainCount = count;
+                cout << count;
+                // return count;
+                break;
             }
-            x++;
         }
-        return ans;
+        return mainCount;
     }
 };
