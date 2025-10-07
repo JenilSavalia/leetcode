@@ -12,7 +12,6 @@ public:
             if(count==i){
                 mainCount = count;
                 cout << count;
-                // return count;
                 break;
             }
         }
