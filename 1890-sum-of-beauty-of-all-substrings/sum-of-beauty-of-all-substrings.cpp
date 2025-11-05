@@ -8,8 +8,8 @@ public:
             for (int j = i; j < n; j++) {
                 m[s[j]]++;
                 // if (j - i > 2) {
-                    int maxfreq = INT_MIN;
-                    int minfreq = INT_MAX;
+                    int maxfreq = 0;
+                    int minfreq = 501;
 
                     for (auto it : m) {
                         maxfreq = max(maxfreq, it.second);
