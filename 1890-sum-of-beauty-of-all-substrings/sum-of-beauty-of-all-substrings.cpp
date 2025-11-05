@@ -4,7 +4,7 @@ public:
         int n = s.length();
         int beauty = 0;
         for (int i = 0; i < n; i++) {
-            map<char, int> m;
+            unordered_map<char, int> m;
             for (int j = i; j < n; j++) {
                 m[s[j]]++;
                 // if (j - i > 2) {
