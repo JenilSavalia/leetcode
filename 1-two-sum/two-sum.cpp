@@ -1,18 +1,35 @@
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
-        int n = nums.size();
-        unordered_map<int,int> mpp;
-        vector<int> TwoSum;
 
-        for (int i = 0; i < n; i++) {
+        unordered_map<int, int> m;
+
+        for (int i = 0; i < nums.size(); i++) {
             int diff = target - nums[i];
-            if (mpp.find(diff) != mpp.end()) {
-                TwoSum.push_back(i);
-                TwoSum.push_back(mpp[diff]);
+            if (m.find(diff) != m.end()) {
+                return {i, m[diff]};
+            } else {
+                m[nums[i]] = i;
             }
-            mpp[nums[i]] = i;
         }
-        return TwoSum;
+
+        return {-1, -1};
+
+
+        // WORKS ONLY IF SORTED
+        // int left = 0;
+        // int right = nums.size() - 1;
+
+        // while (left < right) {
+        //     int sum = nums[left] + nums[right];
+        //     if (sum == target) {
+        //         return {left, right}; // Found the pair
+        //     } else if (sum > target) {
+        //         right--;
+        //     } else {
+        //         left++;
+        //     }
+        // }
+        // return {-1,-1};
     }
 };
