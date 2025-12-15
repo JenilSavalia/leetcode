@@ -35,14 +35,13 @@ public:
         // 1->2->3->4
 
         while (curr != NULL) {
-            ListNode* curr1 = curr->next;
+            ListNode* temp = curr->next;
 
             curr->next = prev;
-            prev = curr;
 
-            head = curr;
-            curr = curr1;
+            prev = curr;
+            curr = temp;
         }
-        return head;
+        return prev;
     }
 };
