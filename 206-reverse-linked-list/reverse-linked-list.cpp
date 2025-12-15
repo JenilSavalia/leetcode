@@ -29,6 +29,12 @@ public:
         // }
         // return head;
 
+
+
+
+
+     // Iterative Approach
+
         ListNode* curr = head;
         ListNode* prev = NULL;
 
