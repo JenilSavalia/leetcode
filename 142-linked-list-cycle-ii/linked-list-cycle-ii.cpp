@@ -10,7 +10,6 @@ class Solution {
 public:
     ListNode* detectCycle(ListNode* head) {
 
-        ListNode* fast = head;
         ListNode* slow = head;
         unordered_map<ListNode*, int> mp;
 
@@ -20,10 +19,6 @@ public:
                 return slow;
             }
             slow = slow->next;
-            // fast = fast->next->next;
-            // if (fast == slow) {
-            //     break;
-            // }
         }
 
         return NULL;
