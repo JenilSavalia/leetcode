@@ -24,12 +24,15 @@ public:
             q1.pop();
             q2.pop();
 
+            // if both of the nodes is null , then skip this iteration....
             if (!tmp1 && !tmp2)
                 continue;
 
+            // check if any one of the node is null , return false as this means structure of 
             if (!tmp1 || !tmp2)
                 return false;
 
+            // check value 
             if (tmp1->val != tmp2->val) {
                 return false;
             }
