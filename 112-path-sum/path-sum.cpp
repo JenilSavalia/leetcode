@@ -22,8 +22,20 @@ class Solution {
         }
 
         cout << root->val << endl;
-        return preOrder(root->left, count + root->val, target) ||
-               preOrder(root->right, count + root->val, target);
+        // return preOrder(root->left, count + root->val, target) ||
+        //        preOrder(root->right, count + root->val, target);
+
+        int leftPath = preOrder(root->left, count + root->val, target);
+        if(leftPath){
+            return true;
+        }
+        int rightPath = preOrder(root->right, count + root->val, target);
+        if(rightPath){
+            return true;
+        }
+
+        return false;
+
     }
 
 public:
