@@ -11,10 +11,6 @@ public:
             return a > b; // returns true if 'a' should come before 'b'
         });
 
-        int minBox = 0;
-        // for (int i = 0;i<capacity.size();i++){
-        //     appleSum
-        // }
         int i = 0;
         while(appleSum > 0 && i < capacity.size()){
             appleSum -= capacity[i];
