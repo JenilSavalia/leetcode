@@ -1,5 +1,10 @@
 class Solution {
 public:
+    bool isVovel(char chr) {
+        return chr == 'a' || chr == 'e' || chr == 'i' || chr == 'o' ||
+               chr == 'u' || chr == 'A' || chr == 'E' || chr == 'I' ||
+               chr == 'O' || chr == 'U';
+    }
     string reverseVowels(string s) {
 
         // vector<char> vovel;
@@ -31,23 +36,11 @@ public:
         while (i < j) {
             char chr = s[i];
             char chr1 = s[j];
-            if ((chr == 'a' || chr == 'e' || chr == 'i' || chr == 'o' ||
-                 chr == 'u' || chr == 'A' || chr == 'E' || chr == 'I' ||
-                 chr == 'O' || chr == 'U') &&
-                (chr1 == 'a' || chr1 == 'e' || chr1 == 'i' || chr1 == 'o' ||
-                 chr1 == 'u' || chr1 == 'A' || chr1 == 'E' || chr1 == 'I' ||
-                 chr1 == 'O' || chr1 == 'U')) {
-                s[i] = chr1;
-                s[j] = chr;
+            if (isVovel(s[i]) && isVovel(s[j]) ) {
+                swap(s[i],s[j]);
                 i++;
                 j--;
-            }
-            else if ((chr == 'a' || chr == 'e' || chr == 'i' || chr == 'o' ||
-                 chr == 'u' || chr == 'A' || chr == 'E' || chr == 'I' ||
-                 chr == 'O' || chr == 'U') &&
-                !(chr1 == 'a' || chr1 == 'e' || chr1 == 'i' || chr1 == 'o' ||
-                  chr1 == 'u' || chr1 == 'A' || chr1 == 'E' || chr1 == 'I' ||
-                  chr1 == 'O' || chr1 == 'U')) {
+            } else if (isVovel(s[i]) && !isVovel(s[j]) ) {
                 j--;
             } else {
                 i++;
