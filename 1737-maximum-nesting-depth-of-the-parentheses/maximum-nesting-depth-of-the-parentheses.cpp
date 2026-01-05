@@ -1,18 +1,19 @@
 class Solution {
 public:
     int maxDepth(string s) {
-        int MaxCnt = 0;
-        int cnt = 0;
-        for (char x : s) {
-            if (x == '(') {
-                cnt++;
-            } else {
-                if (x == ')') {
-                    cnt--;
-                }
+
+        int maxDepth = 0;
+        int currCount = 0;
+
+        for(char x : s){
+            if(x == '('){
+                currCount++;
+            }else if(x == ')'){
+                maxDepth = max(currCount,maxDepth);
+                currCount--;
             }
-            MaxCnt = max(cnt, MaxCnt);
         }
-        return MaxCnt;
+        return maxDepth;
+
     }
 };
