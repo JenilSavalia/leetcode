@@ -1,11 +1,12 @@
 class Solution {
 public:
     vector<int> searchRange(vector<int>& nums, int target) {
-        int left = 0;
-        int right = nums.size() - 1;
         int left_occurance = -1;
         int right_occurance = -1;
 
+        // Finding the Leftmost Occurrence
+        int left = 0;
+        int right = nums.size() - 1;
         while (left <= right) {
             int mid = left + ((right - left) / 2);
 
