@@ -1,40 +1,34 @@
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left),
- * right(right) {}
- * };
- */
 class Solution {
 public:
-    int countNodes(TreeNode* root) {
-
-        if(root == NULL) return 0;
-        queue<TreeNode*> q;
-        q.push(root);
-        int count =0;
-
-        while (!q.empty()) {
-            TreeNode* tmp = q.front();
-            q.pop();
-            count++;
-            if (tmp->left) {
-                // count++;
-                q.push(tmp->left);
-            }
-
-            if (tmp->right) {
-                // count++;
-                q.push(tmp->right);
-            }
-
-
+    int countLeft(TreeNode* root) {
+        int height = 0;
+        while (root) {
+            height++;
+            root = root->left;
         }
-        return count;
+        return height;
+    }
+
+    int countRight(TreeNode* root) {
+        int height = 0;
+        while (root) {
+            height++;
+            root = root->right;
+        }
+        return height;
+    }
+
+    int countNodes(TreeNode* root) {
+        if (!root) return 0;
+
+        int left = countLeft(root);
+        int right = countRight(root);
+
+        if (left == right) {
+            // Perfect binary tree
+            return (1 << left) - 1;
+        }
+
+        return 1 + countNodes(root->left) + countNodes(root->right);
     }
 };
