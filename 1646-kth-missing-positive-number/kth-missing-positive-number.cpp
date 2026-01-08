@@ -20,6 +20,6 @@ public:
             }
         }
 
-        return k+left;
+        return right + 1 + k;
     }
 };
