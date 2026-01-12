@@ -6,7 +6,6 @@ public:
         int left = 1;
         int right = maxEle;
 
-        sort(nums.begin(), nums.end());
 
         // ceil to upper value is for a/b is => (a+b-1)/b
 
