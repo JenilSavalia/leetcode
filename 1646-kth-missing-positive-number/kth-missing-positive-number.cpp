@@ -21,6 +21,6 @@ public:
             }
         }
 
-        return left + k;
+        return right + 1 + k;
     }
 };
