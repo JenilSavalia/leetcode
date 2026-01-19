@@ -16,7 +16,9 @@ public:
         if (openCnt < n)
             generate(str + "(", n, result, openCnt + 1, closeCnt);
 
-        if (closeCnt < openCnt)
+        if (abs(openCnt - closeCnt))
+            // You can only add a closing parenthesis if there are more opens
+            // than closes so far.
             generate(str + ")", n, result, openCnt, closeCnt + 1);
     }
 };
