@@ -23,6 +23,12 @@ public:
 
         for (int i = 0; i < nums.size(); i++) {
 
+            // why visited[i - 1] == 0 ??
+
+            // “For duplicates, we only allow picking nums[i] if its previous
+            // identical number has already been used in the current        permutation
+            // branch.”
+
             if (visited[i] == 1 ||
                 (i > 0 && nums[i] == nums[i - 1] && visited[i - 1] == 0)) {
                 continue;
