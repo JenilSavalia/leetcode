@@ -4,12 +4,13 @@ public:
         int toPlace = 0;
         int i = 1;
 
+        nums[toPlace++] = nums[0];
+
         for (i; i < nums.size(); i++) {
             if (nums[i] != nums[i - 1]) {
-                nums[toPlace++] = nums[i - 1];
+                nums[toPlace++] = nums[i];
             }
         }
-        nums[toPlace++] = nums.back();
 
         return toPlace;
     }
