@@ -1,33 +1,25 @@
 class Solution {
 public:
     long long maximumSubarraySum(vector<int>& nums, int k) {
-        long long sum = 0;
+        unordered_map<int, int> stt;
         long long maxSum = INT_MIN;
+        long long sum = 0;
 
-        int start = 0;
-        int end = 0;
-        unordered_map<int, int> mp;
+        for (int i = 0; i < nums.size(); i++) {
+            sum += nums[i];
+            stt[nums[i]]++;
 
-        while (end < nums.size()) {
-            sum += nums[end];
-            mp[nums[end]]++;
-
-            if (end - start + 1 == k) {
-
-                if (mp.size() == k) {
+            if (i + 1 >= k) {
+                if (stt.size() == k) {
                     maxSum = max(sum, maxSum);
                 }
-                sum -= nums[start];
-
-                mp[nums[start]]--;
-                if (mp[nums[start]]== 0) {
-                    mp.erase(nums[start]);
+                sum -= nums[i+1-k];
+                stt[nums[i + 1 - k]]--;
+                if (stt[nums[i + 1 - k]] == 0) {
+                    stt.erase(nums[i+1-k]);
                 }
-                start++;
             }
-            end++;
         }
-
         return maxSum == INT_MIN ? 0 : maxSum;
     }
 };
