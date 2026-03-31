@@ -7,7 +7,9 @@ public:
         }
         if (dp[n] != -1)
             return dp[n];
-        return dp[n] = F(n - 1) + F(n - 2);
+
+        dp[n] = F(n - 1) + F(n - 2);
+        return dp[n];
     }
     int climbStairs(int n) {
         dp.resize(n + 1, -1);
