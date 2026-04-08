@@ -1,27 +1,34 @@
 class Solution {
 public:
-    vector<vector<int>> subsets(vector<int>& nums) {
 
-        vector<vector<int>> result;
-        vector<int> subset;
+    void generate(vector<int> nums,vector<vector<int>> &result,vector<int> subset,int index){
 
-        generateSubsets(result, subset, nums, 0);
-
-        return result;
-    }
-
-    void generateSubsets(vector<vector<int>>& result, vector<int> subset,
-                         vector<int>& nums, int pos) {
-        // base case
-        if (pos >= nums.size()) {
+        if(index >= nums.size()){
             result.push_back(subset);
             return;
         }
-        // backtracking
-        subset.push_back(nums[pos]);
-        generateSubsets(result, subset, nums, pos + 1); // include the current index
+
+        // result.push_back(subset);
+
+        // pick
+        subset.push_back(nums[index]);
+        generate(nums,result,subset,index+1);
+
+        // dont pick
         subset.pop_back();
-        generateSubsets(result, subset, nums, pos + 1); // excclude the current index
+        generate(nums,result,subset,index+1);
+
+
+    }
+
+    vector<vector<int>> subsets(vector<int>& nums) {
+        
+        vector<vector<int>> result;
+        vector<int> subset;
+
+        generate(nums,result,subset,0);
+
+        return result;
 
     }
 };
