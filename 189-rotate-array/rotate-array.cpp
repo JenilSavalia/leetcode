@@ -1,19 +1,24 @@
 class Solution {
 public:
     void rotate(vector<int>& nums, int k) {
-        vector<int> res;
-        if (nums.size() == 1)
-            return;
-        k = k % nums.size();
+        // vector<int> res;
+        // if (nums.size() == 1)
+        //     return;
+        // k = k % nums.size();
 
-        for (int i = nums.size() - k; i < nums.size(); i++) {
-            res.push_back(nums[i]);
-        }
-        for (int i = 0; i < nums.size() - k; i++) {
-            res.push_back(nums[i]);
-        }
-        for (int i = 0; i < nums.size(); i++) {
-            nums[i] = res[i];
-        }
+        // for (int i = nums.size() - k; i < nums.size(); i++) {
+        //     res.push_back(nums[i]);
+        // }
+        // for (int i = 0; i < nums.size() - k; i++) {
+        //     res.push_back(nums[i]);
+        // }
+        // for (int i = 0; i < nums.size(); i++) {
+        //     nums[i] = res[i];
+        // }
+
+        k = k % nums.size();
+        reverse(nums.begin(), nums.end());
+        reverse(nums.begin(), nums.begin() + k);
+        reverse(nums.begin()+k, nums.end());
     }
 };
