@@ -1,21 +1,32 @@
 class Solution {
 public:
     int majorityElement(vector<int>& nums) {
+        // boyer-moore majority voting algorithm
 
-        map<int, int> mpp;
-        int n = nums.size();
-        for (int i = 0; i < n; i++) {
-            mpp[nums[i]]++;
-        }
+        int candidate = nums[0];
+        int count = 0;
 
-        int max = nums[0];
-        int maxFreq = 0;
-        for (auto x : mpp) {
-            if(x.second>maxFreq){
-                maxFreq = x.second;
-                max= x.first;
+        for(int x : nums){
+
+            if(count == 0){
+                candidate = x;
+            }
+
+            if(candidate == x){
+                count++;
+            }else{
+                count--;
             }
         }
-        return max;
+
+        count = 0;
+        for(int x : nums){
+            if(candidate == x) count++;
+        }
+
+        if(count > nums.size()/2){
+            return candidate;
+        }
+        return candidate;
     }
 };
