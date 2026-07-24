@@ -1,7 +1,7 @@
 class Solution {
 public:
 
-    void backtrack(int index,vector<int> subset,vector<vector<int>> &result,vector<int> nums){
+    void backtrack(int index,vector<int> &subset,vector<vector<int>> &result,vector<int> &nums){
         
         if(index>=nums.size()){
             result.push_back(subset);
@@ -21,9 +21,9 @@ public:
     vector<vector<int>> subsets(vector<int>& nums) {
         
         vector<vector<int>> result;
+        vector<int> subset;
 
-
-        backtrack(0,{},result,nums);
+        backtrack(0,subset,result,nums);
         return result;
 
     }
