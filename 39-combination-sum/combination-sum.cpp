@@ -18,10 +18,7 @@ public:
 
         subset.pop_back();
         sum -= nums[index];
-        // dont pick (if i have excluded a element, i should not pick that
-        // elements to avoid duplicates)
-        while (index + 1 < nums.size() && nums[index] == nums[index + 1])
-            index++;
+
         backtrack(index+1, nums, result, subset, target, sum);
     }
 
