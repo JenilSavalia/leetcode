@@ -1,39 +1,42 @@
 class Solution {
 public:
-    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+    void backtrack(int index, vector<int>& nums, vector<vector<int>>& result,
+                   vector<int>& subset, int& target, int sum) {
 
-        // we would need to take two decisions at every candidate
-        // i.e
-        // 1) take the current index
-        // 2) skip the current index
-        vector<vector<int>> result;
-        vector<int> subset;
-        generate(candidates, subset, result, 0, 0, target);
-
-        return result;
-    }
-
-    void generate(vector<int>& candidates, vector<int>& subset,
-                  vector<vector<int>>& result, int sum, int index, int target) {
-
-        if (sum > target)
+        if (sum > target || index == nums.size())
             return;
 
-        if (index == candidates.size())
-            return;
-
-        if (target == sum) {
+        if (sum == target) {
             result.push_back(subset);
             return;
         }
 
-        // decision #1 -> take the current index
-        subset.push_back(candidates[index]);
-        generate(candidates, subset, result, sum + candidates[index], index,
-                 target);
+        // pick
+        subset.push_back(nums[index]);
+        sum += nums[index];
+        backtrack(index, nums, result, subset, target, sum);
 
-        // decision #2 -> skip the current index
         subset.pop_back();
-        generate(candidates, subset, result, sum, index + 1, target);
+        sum -= nums[index];
+        // dont pick (if i have excluded a element, i should not pick that
+        // elements to avoid duplicates)
+        while (index + 1 < nums.size() && nums[index] == nums[index + 1])
+            index++;
+        backtrack(index+1, nums, result, subset, target, sum);
+    }
+
+    vector<vector<int>> combinationSum(vector<int>& nums, int target) {
+
+        vector<vector<int>> result;
+        vector<int> subset;
+
+        sort(nums.begin(),nums.end());
+
+        int index = 0;
+        int sum = 0;
+
+        backtrack(index, nums, result, subset, target, sum);
+
+        return result;
     }
 };
