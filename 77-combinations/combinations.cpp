@@ -1,27 +1,33 @@
 class Solution {
 public:
+    void backtrack(vector<vector<int>>& result, vector<int>& subset, int curr,
+                   int& n, int& k) {
+
+        if (subset.size() == k) {
+            result.push_back(subset);
+            return;
+        }
+
+        if (curr > n)
+            return;
+
+        // pick
+        subset.push_back(curr);
+        backtrack(result, subset, curr + 1, n, k);
+
+        // dont pick
+        subset.pop_back();
+        backtrack(result, subset, curr + 1, n, k);
+    }
+
     vector<vector<int>> combine(int n, int k) {
 
         vector<vector<int>> result;
         vector<int> subset;
+        int curr = 1;
 
-        generate(result,subset,0,n,k);
+        backtrack(result, subset, curr, n, k);
+
         return result;
-    }
-    void generate(vector<vector<int>>& result, vector<int> &subset, int pos,int &n,int &k) {
-
-        if (pos == n) {
-            if (subset.size() == k) {
-                result.push_back(subset);
-            }
-            return;
-        }
-
-        subset.push_back(pos + 1);
-        generate(result, subset, pos + 1,n,k);
-
-        subset.pop_back();
-
-        generate(result, subset, pos + 1,n,k);
     }
 };
