@@ -1,45 +1,44 @@
 class Solution {
 public:
-    vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
-
-        vector<vector<int>> result;
-        vector<int> subset;
-
-        // we are given candidate array which can contain duplicate elements,
-        // when we generate the combinations with duplicate elements, then same
-        // combinations are formed.
-        // => to avoid that , we would skip duplicates, makig combinations
-        // unique
-
-        sort(candidates.begin(), candidates.end());
-        generate(candidates, result, subset, 0, 0, target);
-
-        return result;
-    }
-    void generate(vector<int>& candidates, vector<vector<int>>& result,
-                  vector<int> subset, int index, int sum, int target) {
+    void backtrack(int index, int& sum, int& target, vector<int>& nums,
+                   vector<vector<int>>& result, vector<int>& subset) {
 
         if (sum == target) {
             result.push_back(subset);
             return;
         }
 
-        if (sum > target) {
+        if (sum > target || index == nums.size()) {
             return;
         }
 
-        for (int i = index; i < candidates.size(); i++) {
-            // 🔥 skip duplicates at SAME recursion level
+        // pick
+        subset.push_back(nums[index]);
+        sum += nums[index];
+        backtrack(index + 1, sum, target, nums, result, subset);
 
-            if (i > index && candidates[i] == candidates[i - 1]) {
-                continue; // Skip duplicate
-            }
+        // dont pick
+        subset.pop_back();
+        sum -= nums[index];
 
-            subset.push_back(candidates[i]);
-            generate(candidates, result, subset, i + 1, sum + candidates[i],
-                     target);
+        // avoid duplicatess
+        while (index + 1 < nums.size() && nums[index] == nums[index + 1])
+            index++;
+        backtrack(index + 1, sum, target, nums, result, subset);
+    }
 
-            subset.pop_back();
-        }
+    vector<vector<int>> combinationSum2(vector<int>& nums, int target) {
+
+        sort(nums.begin(), nums.end());
+
+        vector<vector<int>> result;
+        vector<int> subset;
+
+        int index = 0;
+        int sum = 0;
+
+        backtrack(index, sum, target, nums, result, subset);
+
+        return result;
     }
 };
