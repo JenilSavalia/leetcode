@@ -16,7 +16,10 @@ public:
             }
         }
 
-        arr1.insert(arr1.end(), arr2.begin(), arr2.end());
+        // arr1.insert(arr1.end(), arr2.begin(), arr2.end());
+        for(int x : arr2){
+            arr1.push_back(x);
+        }
         return arr1;
     }
 };
