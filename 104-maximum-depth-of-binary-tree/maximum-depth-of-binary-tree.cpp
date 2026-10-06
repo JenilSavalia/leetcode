@@ -11,26 +11,25 @@
  * };
  */
 class Solution {
-    void preorder(TreeNode* root, int count, int& maxCount) {
-        if (root == NULL)
-            return ;
-
-        if (root->left == NULL && root->right == NULL) {
+    void perOrder(TreeNode* root, int count, int &maxCount) {
+        if (root == NULL) {
             maxCount = max(count, maxCount);
             return;
         }
-        // count++;
-        preorder(root->left, count + 1, maxCount);
-        preorder(root->right, count + 1, maxCount);
+
+        // add count
+        count++;
+        perOrder(root->left, count, maxCount);
+        perOrder(root->right, count, maxCount);
     }
 
 public:
     int maxDepth(TreeNode* root) {
-        if (root == NULL)
-            return 0;
-        int count = 1;
-        int maxCount = 0;
-        preorder(root, count, maxCount);
+        int maxCount = INT_MIN;
+        int count = 0;
+
+        perOrder(root,count,maxCount);
+
         return maxCount;
     }
 };
